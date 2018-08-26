@@ -1,5 +1,6 @@
 FROM node:alpine
 WORKDIR '/app'
-COPY . .
+RUN apk add yarn
+COPY ./ ./
 EXPOSE 4200
-CMD npm run dev
+CMD yarn dev
