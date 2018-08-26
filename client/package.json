@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "dev": "ng serve",
+    "dev": "ng serve --host 0.0.0.0 --disableHostCheck true --poll 1",
     "build": "ng build --aot --prod",
     "postinstall": "ng build --aot --prod",
     "test": "ng test",
