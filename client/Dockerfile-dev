@@ -1,7 +1,8 @@
 FROM node:alpine
 WORKDIR '/app'
-COPY package.json .
+COPY ./package.json ./
 RUN npm install
 COPY . .
-EXPOSE 4200
-CMD npm start-ng
+RUN npm run build
+EXPOSE 4000
+CMD npm start

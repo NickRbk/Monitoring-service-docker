@@ -25,10 +25,10 @@ services:
       - TWITTER_ACCESS_TOKEN_SECRET=
     volumes:
       - C:/Users/nryba/.m2/repository:/root/.m2/repository
+      - ./rest:/app
   client:
     build:
       context: ./client
       dockerfile: Dockerfile-dev
-    volumes:
-      - /app/node_modules
-      - ./client:/app
+    # volumes:
+    #   - ./client:/app
