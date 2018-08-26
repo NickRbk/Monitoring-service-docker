@@ -5,13 +5,13 @@ services:
   proxy:
     build:
       context: ./proxy
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-dev
     ports:
       - '8080:80'
   rest:
     build:
       context: ./rest
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-dev
     environment:
       - PGHOST=postgres
       - PGPORT=5432
@@ -23,7 +23,12 @@ services:
       - TWITTER_CONSUMER_SECRET=
       - TWITTER_ACCESS_TOKEN=
       - TWITTER_ACCESS_TOKEN_SECRET=
+    volumes:
+      - C:/Users/nryba/.m2/repository:/root/.m2/repository
+      - ./rest:/app
   client:
     build:
       context: ./client
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-dev
+    volumes:
+      - ./client:/app
