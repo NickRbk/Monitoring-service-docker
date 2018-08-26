@@ -1,0 +1,63 @@
+<section *ngIf="onSaving; else mainBlock">
+  <mat-progress-bar
+    color="warn"
+    mode="indeterminate">
+  </mat-progress-bar>
+</section>
+
+<ng-template #mainBlock>
+  <section class="edit-objective" fxLayoutAlign="center center" *ngIf="objectiveForm">
+    <form [formGroup]="objectiveForm"
+          fxLayout="column"
+          (ngSubmit)="onSubmit()"
+          fxFlex="400px"
+          fxFlex.xs="80%"
+          fxLayoutGap="10px"
+          *ngIf="!error; else errorBlock">
+
+      <mat-card-actions fxLayoutAlign="space-between">
+        <button mat-raised-button type="submit" [disabled]="objectiveForm.invalid">
+          {{ changeSaveButtonLabel() }}
+        </button>
+        <button mat-button color="warn" type="button" (click)="onCancel()">CANCEL</button>
+      </mat-card-actions>
+
+      <mat-form-field>
+        <input type="text"
+               id="firstName"
+               #firstName
+               formControlName="firstName"
+               matInput
+               placeholder="First name">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text"
+               id="lastName"
+               #lastName
+               formControlName="lastName"
+               matInput
+               placeholder="Last name">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text"
+               id="alias"
+               #lastName
+               formControlName="alias"
+               matInput
+               placeholder="Twitter alias">
+      </mat-form-field>
+
+      <mat-card-actions *ngIf="editMode" fxFlexAlign="end">
+        <button mat-raised-button color="warn" type="button" (click)="onRemove()">DELETE OBJECTIVE</button>
+      </mat-card-actions>
+    </form>
+
+    <ng-template #errorBlock>
+      <div id="error" fxLayoutAlign="center center">
+        {{ error }}
+      </div>
+    </ng-template>
+  </section>
+</ng-template>
+
+

@@ -1,0 +1,25 @@
+<mat-nav-list fxLayoutAlign="space-between start" fxLayout="column">
+  <section>
+    <a mat-list-item routerLink="/signup" (click)="onClose()" *ngIf="!userIsAuthenticated">
+      <mat-icon>account_circle</mat-icon>
+      <span class="nav-caption">SignUp</span>
+    </a>
+    <a mat-list-item routerLink="/login" (click)="onClose()" *ngIf="!userIsAuthenticated">
+      <mat-icon>input</mat-icon>
+      <span class="nav-caption">Login</span>
+    </a>
+    <a mat-list-item routerLink="/objectives" (click)="onClose()" *ngIf="userIsAuthenticated">
+      <mat-icon>event_note</mat-icon>
+      <span class="nav-caption">Objectives</span>
+    </a>
+    <a mat-list-item routerLink="/media"
+       (click)="onClose()" *ngIf="userIsAuthenticated">
+      <mat-icon>event_note</mat-icon>
+      <span class="nav-caption">Tweets</span>
+    </a>
+  </section>
+  <a mat-list-item *ngIf="userIsAuthenticated">
+    <mat-icon>eject</mat-icon>
+    <span class="nav-caption" (click)="logout()">Logout</span>
+  </a>
+</mat-nav-list>

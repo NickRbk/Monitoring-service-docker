@@ -1,0 +1,63 @@
+<section *ngIf="loading; else mainBlock">
+  <mat-progress-bar color="warn"
+                    mode="indeterminate">
+  </mat-progress-bar>
+</section>
+
+<ng-template #mainBlock>
+  <section id="mainBlock" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap.gt-xs="20px">
+    <a routerLink="new" fxFlex="100%" fxLayoutAlign="end start">
+      <mat-icon id="addObjectiveIcon">library_add</mat-icon>
+    </a>
+
+    <mat-card fxFlex.xs="100%" fxFlex="400px" *ngFor="let objective of objectives">
+      <div fxLayoutAlign="space-between">
+        <h3>{{objective['firstName']}} {{objective['lastName']}}</h3>
+        <button mat-icon-button id="settings"
+                (click)="shareObjective(objective)"
+                routerLink="{{objective['id']}}/edit">
+          <mat-icon>build</mat-icon>
+        </button>
+      </div>
+      <mat-divider></mat-divider>
+
+      <section *ngIf="objective['socialMedia']['twitter']['profile']; else invalidProfile">
+        <mat-card-header fxLayoutAlign="space-between">
+          <mat-card-title>
+            <a [href]="objective['socialMedia']['twitter']['profile']['profileURL']"
+               target="_blank">
+              {{ objective['socialMedia']['twitter']['profile']['userName'] }}
+            </a>
+            <i class="material-icons md-18">location_on</i>
+            {{ objective['socialMedia']['twitter']['profile']['location'] }}
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-subtitle>{{ objective['socialMedia']['twitter']['profile']['description'] }}</mat-card-subtitle>
+        <img mat-card-image [src]="objective['socialMedia']['twitter']['profile']['profileImageURL']">
+        <mat-card-footer fxLayout="row" fxLayoutAlign="space-between">
+          <div>
+            <i class="material-icons md-18">favorite</i>
+            <span>{{ objective['socialMedia']['twitter']['profile']['favouritesCount'] }}</span>
+          </div>
+          <div>
+            <i class="material-icons md-18">notifications_none</i>
+            <span>{{ objective['socialMedia']['twitter']['profile']['followersCount'] }}</span>
+          </div>
+          <div>
+            <i class="material-icons md-18">people</i>
+            <span>{{ objective['socialMedia']['twitter']['profile']['friendsCount'] }}</span>
+          </div>
+          <div>
+            <i class="material-icons md-18">message</i>
+            <span>{{ objective['socialMedia']['twitter']['profile']['statusesCount'] }}</span>
+          </div>
+        </mat-card-footer>
+      </section>
+      <ng-template #invalidProfile>
+        <mat-card-subtitle flexLayoutAlign="center center">
+          Please provide valid Twitter nickname ..(
+        </mat-card-subtitle>
+      </ng-template>
+    </mat-card>
+  </section>
+</ng-template>

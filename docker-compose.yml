@@ -1,0 +1,23 @@
+version: '3'
+services:
+  postgres:
+    image: 'postgres:latest'
+  proxy:
+    image: 'nickrybak/cv-twitter-s-proxy'
+    ports:
+      - '8080:80'
+  rest:
+    image: 'nickrybak/cv-twitter-s-rest'
+    environment:
+      - PGHOST=postgres
+      - PGPORT=5432
+      - PGDATABASE=postgres
+      - PGUSER=postgres
+      - PGPASSWORD=postgres_password
+      - TWITTER_CRON_UPDATER=* 0/30 * * * *
+      - TWITTER_CONSUMER_KEY=
+      - TWITTER_CONSUMER_SECRET=
+      - TWITTER_ACCESS_TOKEN=
+      - TWITTER_ACCESS_TOKEN_SECRET=
+  client:
+    image: 'nickrybak/cv-twitter-s-client'

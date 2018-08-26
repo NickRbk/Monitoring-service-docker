@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
+    username: ${PGUSER}
+    password: ${PGPASSWORD}
+
+twitter4j:
+  debug: true
+  oauth:
+    consumer-key: ${TWITTER_CONSUMER_KEY}
+    consumer-secret: ${TWITTER_CONSUMER_SECRET}
+    access-token: ${TWITTER_ACCESS_TOKEN}
+    access-token-secret: ${TWITTER_ACCESS_TOKEN_SECRET}

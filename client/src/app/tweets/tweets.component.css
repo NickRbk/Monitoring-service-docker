@@ -1,0 +1,81 @@
+.mat-form-field {
+  width: 120px;
+}
+
+.mat-form-field {
+  margin-left: 10px;
+}
+
+mat-icon, mat-card-subtitle, .iconText {
+  vertical-align: middle;
+  font-size: 1em;
+  padding-right: 4px;
+}
+
+.icons {
+  zoom: .7;
+}
+
+.dateTime {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.fav {
+  color: red;
+}
+
+.share {
+  color: blue;
+}
+
+.footer {
+  margin-bottom: 0;
+}
+
+.authors {
+  font-size: 1.5em;
+}
+
+.full-text {
+  padding-top: 5px;
+  margin-bottom: 0;
+  font-size: .6em;
+  color: grey;
+}
+
+.mat-card-subtitle {
+  padding-top: 5px;
+  margin-bottom: 0;
+}
+
+mat-card-content {
+  margin: 0;
+}
+
+mat-card {
+  padding-bottom: 0;
+  margin-bottom: 10px;
+}
+
+mat-card-title {
+  margin: 0;
+}
+
+.main-section {
+  margin: 5px 0px;
+}
+
+.tweets {
+  margin: 10px;
+}
+
+.sorting {
+  padding-left: 10px;
+}
+
+mat-radio-group {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 20px;
+}

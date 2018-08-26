@@ -1,0 +1,93 @@
+<section *ngIf="onLoading; else mainBlock">
+  <mat-progress-bar
+    color="warn"
+    mode="indeterminate">
+  </mat-progress-bar>
+</section>
+
+<ng-template #mainBlock>
+  <section class="signup-form" fxLayoutAlign="center center">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()"
+          fxFlex="300px"
+          fxFlex.md-xs="80%"
+          fxLayoutGap="10px"
+          fxLayout="column"
+          *ngIf="!error; else errorBlock">
+
+      <mat-card-actions *ngIf="editMode" fxLayoutAlign="space-between">
+        <button mat-raised-button type="submit" [disabled]="signupForm.invalid">
+          UPDATE
+        </button>
+        <button mat-button color="warn" type="button" (click)="onCancel()">CANCEL</button>
+      </mat-card-actions>
+
+      <!--First name-->
+      <mat-form-field>
+        <input type="text"
+               matInput
+               placeholder="First Name"
+               formControlName="firstName">
+        <mat-error *ngIf="signupForm.get('firstName').hasError('required')">Field must not be empty!</mat-error>
+      </mat-form-field>
+
+      <!--Last name-->
+      <mat-form-field>
+        <input type="text"
+               matInput
+               placeholder="Last Name"
+               formControlName="lastName">
+        <mat-error *ngIf="signupForm.get('lastName').hasError('required')">Field must not be empty!</mat-error>
+      </mat-form-field>
+
+      <!--Email-->
+      <mat-form-field>
+        <input type="email"
+               matInput
+               placeholder="Your email"
+               formControlName="email">
+        <mat-error *ngIf="signupForm.get('email').hasError('required')">Field must not be empty!</mat-error>
+        <mat-error *ngIf="!signupForm.get('email').hasError('required')">Email is invalid!</mat-error>
+      </mat-form-field>
+
+      <!--Phone number-->
+      <mat-form-field hintLabel="Should be at least 6 characters long">
+        <input type="text"
+               matInput
+               placeholder="Your phone number"
+               formControlName="phoneNumber"
+               minLength="10">
+        <mat-hint align="end">{{ signupForm.get('phoneNumber').value?.length }} / 10</mat-hint>
+        <mat-error align="end">Has to be at least 10 number</mat-error>
+      </mat-form-field>
+
+      <!--Password-->
+      <mat-form-field hintLabel="Should be at least 6 characters long">
+        <input type="password"
+               matInput
+               placeholder="Your password"
+               formControlName="password"
+               minLength="6">
+        <mat-hint align="end">{{ signupForm.get('password').value?.length }} / 6</mat-hint>
+        <mat-error align="end">Has to be at least 6 characters long</mat-error>
+      </mat-form-field>
+
+      <section *ngIf="!editMode">
+        <mat-checkbox formControlName="agree" color="primary">Agree to Terms and Conditions.</mat-checkbox>
+
+        <button type="submit" mat-raised-button color="primary" [disabled]="signupForm.invalid">
+          Submit
+        </button>
+      </section>
+
+      <mat-card-actions *ngIf="editMode" fxFlexAlign="end">
+        <button mat-raised-button color="warn" type="button" (click)="onRemove()">DELETE</button>
+      </mat-card-actions>
+    </form>
+
+    <ng-template #errorBlock>
+      <div id="error" fxLayoutAlign="center center">
+        {{ error }}
+      </div>
+    </ng-template>
+  </section>
+</ng-template>

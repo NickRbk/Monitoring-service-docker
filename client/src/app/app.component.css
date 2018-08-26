@@ -1,0 +1,8 @@
+mat-form-field {
+  width: 300px;
+}
+
+form, #error {
+  margin-top: 30px;
+}
+

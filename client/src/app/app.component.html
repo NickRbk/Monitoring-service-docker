@@ -1,0 +1,14 @@
+<mat-sidenav-container fxFlexFill>
+  <mat-sidenav #sidenav role="navigation">
+    <app-sidenav-list (closeSideNav)="sidenav.close()"
+                      [currentUser]="currentUser"></app-sidenav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header (sideNavToggle)="sidenav.toggle()"
+                id="header"
+                [currentUser]="currentUser"></app-header>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

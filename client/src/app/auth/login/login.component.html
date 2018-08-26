@@ -1,0 +1,46 @@
+<section *ngIf="onLoading; else mainBlock">
+  <mat-progress-bar
+    color="warn"
+    mode="indeterminate">
+  </mat-progress-bar>
+</section>
+
+<ng-template #mainBlock>
+  <section>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"
+          fxLayout="column"
+          *ngIf="!error; else errorBlock"
+          fxLayoutAlign="center center"
+          fxLayoutGap="10px">
+
+      <!--Email-->
+      <mat-form-field>
+        <input type="email"
+               matInput
+               placeholder="Your email"
+               formControlName="email">
+        <mat-error *ngIf="loginForm.get('email').hasError('required')">Field must not be empty</mat-error>
+        <mat-error *ngIf="!loginForm.get('email').hasError('required')">Email is invalid</mat-error>
+      </mat-form-field>
+
+      <!--Password-->
+      <mat-form-field>
+        <input type="password"
+               matInput
+               placeholder="Your password"
+               formControlName="password">
+        <mat-error *ngIf="loginForm.get('password').hasError('required')">Missing password</mat-error>
+      </mat-form-field>
+
+      <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">
+        Submit
+      </button>
+    </form>
+
+    <ng-template #errorBlock>
+      <div id="error" fxLayoutAlign="center center">
+        {{ error }}
+      </div>
+    </ng-template>
+  </section>
+</ng-template>
