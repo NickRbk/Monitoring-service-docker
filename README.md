@@ -10,7 +10,8 @@ Information about social activity _**updates every 30 min by schedule**_.
 The back-end layer you can see [here](https://github.com/NickRbk/Monitoring-service).
 
 ## Prerequesits
-Provide actual data about Twitter API to `docker-compose.*` files.
+Provide actual data about Twitter API to `docker-compose.*` files and actual absolute path
+to your `.m2` directory on host machine.
 
 ## How to start app?
 1) download project `git clone https://github.com/NickRbk/Monitoring-service-docker.git`
